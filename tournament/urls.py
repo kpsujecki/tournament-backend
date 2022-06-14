@@ -13,9 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
+from .views import TournamentCreate, GetActiveTournament, GetFinishedTournament,\
+    GetOneTournament, FinishTournament
+
+
+app_name = 'tournament'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('create/tournament/', TournamentCreate.as_view(), name="tournament_create"),
+    path('activeTournament/', GetActiveTournament.as_view(), name="tournament_active"),
+    path('finishedTournament/', GetFinishedTournament.as_view(), name="tournament_finished"),
+    path('getActiveOneTournament/', GetOneTournament.as_view(), name="get_one_active_tournament"),
+    path('finishTournament/', FinishTournament.as_view(), name='finishTournament')
+
 ]

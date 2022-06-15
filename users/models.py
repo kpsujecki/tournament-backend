@@ -44,6 +44,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     tournaments = models.ManyToManyField(Tournament)
 
+    @property
+    def is_staff(self):
+        return self.is_admin
+
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
